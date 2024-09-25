@@ -10,12 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mantine/charts": "^7.13.0",
+    "@mantine/core": "^7.13.0",
+    "@mantine/dates": "^7.13.0",
+    "@mantine/form": "^7.13.0",
+    "@mantine/hooks": "^7.13.0",
+    "@mantine/notifications": "^7.13.0",
     "date-fns": "^3.6.0",
+    "dayjs": "^1.11.13",
     "dompurify": "^3.1.6",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.1"
+    "react-router-dom": "^6.26.1",
+    "recharts": "^2.12.7"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.5.0",
@@ -33,6 +41,8 @@
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
     "postcss": "^8.4.41",
+    "postcss-preset-mantine": "^1.17.0",
+    "postcss-simple-vars": "^7.0.1",
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.10",
     "vite": "^5.4.1"
