@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 #root {
-  height: 100%;
 }
 
 .custom-bg-gradient {
