@@ -3,6 +3,8 @@ import AuthenticationTitle from '../components/AuthenticationTitle';
 import App from '../App';
 import ErrorPage from '../components/ErrorPage';
 import SignUp from '../components/SignUp';
+import Home from '../components/Home';
+import FriendsList from '../components/FriendsList';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -16,6 +18,16 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: <SignUp />,
+      },
+      {
+        path: '/home',
+        element: <Home />,
+        children: [
+          {
+            path: '/home',
+            element: <FriendsList />,
+          },
+        ],
       },
     ],
   },

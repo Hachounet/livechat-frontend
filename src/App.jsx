@@ -1,6 +1,5 @@
 import './App.css';
 import { ChatProvider } from './ChatContext';
-import HomeModal from './components/AuthenticationTitle';
 import Layout from './components/Layout';
 import { Outlet } from 'react-router-dom';
 import '@mantine/core/styles.css';
