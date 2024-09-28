@@ -8,6 +8,17 @@ export const ChatProvider = ({ children }) => {
 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
+  const [navBarVisible, setNavBarVisible] = useState(true);
+
+  const [logged, setLogged] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem('accessToken'));
+
+  useEffect(() => {
+    if (token) {
+      setLogged(true); // Logged if token is found in localStorage.
+    }
+  }, [token]);
+
   useEffect(() => {
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
@@ -25,6 +36,12 @@ export const ChatProvider = ({ children }) => {
         actualPage,
         setActualPage,
         screenWidth,
+        navBarVisible,
+        setNavBarVisible,
+        logged,
+        setLogged,
+        token,
+        setToken,
       }}
     >
       {' '}
