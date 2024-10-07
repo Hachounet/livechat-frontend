@@ -1,10 +1,18 @@
-export default function SearchInput() {
+import PropTypes from 'prop-types';
+
+export default function SearchInput({ query, setQuery }) {
   return (
-    <label className="input input-bordered input-primary flex items-center gap-2">
+    <label
+      htmlFor="query"
+      className="max-w-[100%] input input-bordered input-primary flex items-center gap-2 "
+    >
       <input
         type="text"
         className="grow"
-        placeholder="Search"
+        placeholder="User or group name..."
+        name="query"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -21,3 +29,8 @@ export default function SearchInput() {
     </label>
   );
 }
+
+SearchInput.propTypes = {
+  query: PropTypes.string,
+  setQuery: PropTypes.func,
+};

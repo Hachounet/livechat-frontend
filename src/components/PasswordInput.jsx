@@ -1,6 +1,14 @@
-export default function PasswordInput() {
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+
+export default function PasswordInput({ name }) {
+  const [password, setPassword] = useState('');
+
   return (
-    <label className="input input-bordered flex items-center gap-2">
+    <label
+      htmlFor={name}
+      className="input input-bordered flex items-center gap-2"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 16 16"
@@ -14,10 +22,16 @@ export default function PasswordInput() {
         />
       </svg>
       <input
+        name={name}
         type="password"
         className="grow"
-        value="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
       />
     </label>
   );
 }
+
+PasswordInput.propTypes = {
+  name: PropTypes.string.isRequired,
+};

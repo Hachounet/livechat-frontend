@@ -2,36 +2,28 @@ import { useState, useEffect } from 'react';
 import NavBar from './Navbar';
 import SwitchNavBar from './SwitchNavBar'; // Assurez-vous que ce composant est importé
 import { useChatContext } from '../ChatContext';
+import { useSocketContext } from '../SocketContext';
 
 export default function Home() {
-  const { actualPage } = useChatContext();
+  const { actualPage, screenWidth, navBarVisible, token } = useChatContext();
+  const { socket, connectSocket } = useSocketContext();
 
-  // State pour la largeur de l'écran
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
-  // useEffect pour détecter la taille de l'écran
+  // Socket connexion when first mount of component. <Home> is protected so it cannot be mounted if user is not logged in.
   useEffect(() => {
-    // Fonction qui met à jour la largeur de l'écran
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
-
-    // Ajouter l'écouteur d'événement resize
-    window.addEventListener('resize', handleResize);
-
-    // Nettoyage de l'écouteur d'événement lors du démontage du composant
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    connectSocket();
   }, []);
+
+  useEffect(() => {
+    if (socket) {
+      socket.emit('joinRoom', token); // Send token to be decrypted and retrieve userId
+    }
+  }, [socket, token]); // Déclenche ce useEffect lorsque socket ou token change
 
   return (
     <>
       <NavBar />
       <div className="flex-1 relative w-full overflow-y-auto flex justify-center">
-        {screenWidth < 768 && <SwitchNavBar />}{' '}
-        {/* Affiche SwitchNavBar si la largeur est inférieure à 768px */}
-        {actualPage}
+        {screenWidth < 768 && !navBarVisible && <SwitchNavBar />} {actualPage}
       </div>
     </>
   );

@@ -12,6 +12,10 @@ export const ChatProvider = ({ children }) => {
 
   const [logged, setLogged] = useState(false);
   const [token, setToken] = useState(localStorage.getItem('accessToken'));
+  const [actualContactPseudo, setActualContactPseudo] = useState('');
+  const [groupsRefresh, setGroupsRefresh] = useState(false);
+  const [friendsRefresh, setFriendsRefresh] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     if (token) {
@@ -20,6 +24,7 @@ export const ChatProvider = ({ children }) => {
   }, [token]);
 
   useEffect(() => {
+    // Check width to display or not NavBar
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
     };
@@ -30,6 +35,7 @@ export const ChatProvider = ({ children }) => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
   return (
     <ChatContext.Provider
       value={{
@@ -42,6 +48,14 @@ export const ChatProvider = ({ children }) => {
         setLogged,
         token,
         setToken,
+        actualContactPseudo,
+        setActualContactPseudo,
+        groupsRefresh,
+        setGroupsRefresh,
+        friendsRefresh,
+        setFriendsRefresh,
+        userId,
+        setUserId,
       }}
     >
       {' '}

@@ -1,20 +1,21 @@
 import { useState, useEffect } from 'react';
 import { useChatContext } from '../ChatContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function useAuth(url, method = 'GET', body = null) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { setLogged, token } = useChatContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!token) {
       setLogged(false);
-      window.location.href = '/login';
+      navigate('/');
       return;
     }
 
-    // Initialiser les options de fetch
     const options = {
       method,
       headers: {
@@ -23,7 +24,6 @@ export default function useAuth(url, method = 'GET', body = null) {
       },
     };
 
-    // Ajouter le corps de la requête si présent
     if (body) {
       options.body = JSON.stringify(body);
     }
@@ -33,7 +33,7 @@ export default function useAuth(url, method = 'GET', body = null) {
         if (response.status === 401) {
           localStorage.removeItem('accessToken');
           setLogged(false);
-          window.location.href = '/login';
+          navigate('/');
           return;
         }
 

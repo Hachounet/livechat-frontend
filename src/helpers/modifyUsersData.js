@@ -1,6 +1,7 @@
 export function modifyUsersData(users, requests, currentUserId) {
   return users.map((user) => {
-    const isFriend = user.friends.includes(currentUserId);
+    const isSameUser = user.id === currentUserId;
+    const isFriend = user.friends.includes(currentUserId) || isSameUser;
     const requestSent = requests.some(
       (request) =>
         request.senderId === currentUserId && request.receiverId === user.id

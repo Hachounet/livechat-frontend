@@ -1,6 +1,13 @@
+import { useState } from 'react';
+
 export default function EmailInput() {
+  const [email, setEmail] = useState('');
+
   return (
-    <label className="input input-bordered flex items-center gap-2">
+    <label
+      htmlFor="email"
+      className="input input-bordered flex items-center gap-2"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 16 16"
@@ -11,9 +18,12 @@ export default function EmailInput() {
         <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
       </svg>
       <input
+        name="email"
         type="text"
         className="grow"
         placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
     </label>
   );

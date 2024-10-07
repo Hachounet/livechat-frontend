@@ -1,7 +1,13 @@
-export default function ChatResponse() {
+import PropTypes from 'prop-types';
+
+export default function ChatResponse({ content }) {
   return (
     <div className="chat chat-end">
-      <div className="chat-bubble">You underestimate my power! lorem*5</div>
+      <div className="chat-bubble bg-green-700 text-gray-200">{content}</div>
     </div>
   );
 }
+
+ChatResponse.propTypes = {
+  content: PropTypes.string.isRequired,
+};
