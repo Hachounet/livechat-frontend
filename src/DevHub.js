@@ -1,29 +1,50 @@
 const responsiveWidth = 768;
-const siteURL = 'http://localhost:3000';
+const siteURL = 'https://livechat-backend-hachounet.adaptable.app';
 
-const friendsListURL = 'http://localhost:3000/users/friends';
-const friendsRequestURL = 'http://localhost:3000/friends/request';
-const getFriendsRequestURL = 'http://localhost:3000/friends/requests';
-const userInfosUrl = 'http://localhost:3000/users/';
-const postSearchUrl = 'http://localhost:3000/search';
-const getPrivateMessagesURL = 'http://localhost:3000/messages';
-const userPasswordUrl = 'http://localhost:3000/users/password';
-const joinGroupUrl = 'http://localhost:3000/groups/join';
-const getAllGroupsUrl = 'http://localhost:3000/groups/allgroups';
-const createNewGroupUrl = 'http://localhost:3000/groups/createnewgroup';
-const updateGroupUrl = 'http://localhost:3000/groups/edit';
-const deleteGroupUrl = 'http://localhost:3000/groups/delete';
-const getGroupMessagesUrl = 'http://localhost:3000/groups/messages';
-const signUpUrl = 'http://localhost:3000/auth/signup';
-const leaveGroupUrl = 'http://localhost:3000/groups/leave';
-const inviteGroupUrl = 'http://localhost:3000/groups/invite';
-const getGroupRequestsUrl = 'http://localhost:3000/groups/allrequests';
-const acceptInvitationGroupUrl = 'http://localhost:3000/groups/join';
-const denyInvitationGroupUrl = 'http://localhost:3000/groups/deny';
-const excludeGroupMemberUrl = 'http://localhost:3000/groups/exclude';
-const postCancelInvitationsUrl = 'http://localhost:3000/groups/invitations';
-const updateUserStatusUrl = 'http://localhost:3000/users/status';
-const deleteFriendUrl = 'http://localhost:3000/friends/delete';
+const friendsListURL =
+  'https://livechat-backend-hachounet.adaptable.app/users/friends';
+const friendsRequestURL =
+  'https://livechat-backend-hachounet.adaptable.app/friends/request';
+const getFriendsRequestURL =
+  'https://livechat-backend-hachounet.adaptable.app/friends/requests';
+const userInfosUrl = 'https://livechat-backend-hachounet.adaptable.app/users/';
+const postSearchUrl = 'https://livechat-backend-hachounet.adaptable.app/search';
+const getPrivateMessagesURL =
+  'https://livechat-backend-hachounet.adaptable.app/messages';
+const userPasswordUrl =
+  'https://livechat-backend-hachounet.adaptable.app/users/password';
+const joinGroupUrl =
+  'https://livechat-backend-hachounet.adaptable.app/groups/join';
+const getAllGroupsUrl =
+  'https://livechat-backend-hachounet.adaptable.app/groups/allgroups';
+const createNewGroupUrl =
+  'https://livechat-backend-hachounet.adaptable.app/groups/createnewgroup';
+const updateGroupUrl =
+  'https://livechat-backend-hachounet.adaptable.app/groups/edit';
+const deleteGroupUrl =
+  'https://livechat-backend-hachounet.adaptable.app/groups/delete';
+const getGroupMessagesUrl =
+  'https://livechat-backend-hachounet.adaptable.app/groups/messages';
+const signUpUrl =
+  'https://livechat-backend-hachounet.adaptable.app/auth/signup';
+const leaveGroupUrl =
+  'https://livechat-backend-hachounet.adaptable.app/groups/leave';
+const inviteGroupUrl =
+  'https://livechat-backend-hachounet.adaptable.app/groups/invite';
+const getGroupRequestsUrl =
+  'https://livechat-backend-hachounet.adaptable.app/groups/allrequests';
+const acceptInvitationGroupUrl =
+  'https://livechat-backend-hachounet.adaptable.app/groups/join';
+const denyInvitationGroupUrl =
+  'https://livechat-backend-hachounet.adaptable.app/groups/deny';
+const excludeGroupMemberUrl =
+  'https://livechat-backend-hachounet.adaptable.app/groups/exclude';
+const postCancelInvitationsUrl =
+  'https://livechat-backend-hachounet.adaptable.app/groups/invitations';
+const updateUserStatusUrl =
+  'https://livechat-backend-hachounet.adaptable.app/users/status';
+const deleteFriendUrl =
+  'https://livechat-backend-hachounet.adaptable.app/friends/delete';
 
 export {
   responsiveWidth,
