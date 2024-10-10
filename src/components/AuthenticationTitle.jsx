@@ -1,7 +1,7 @@
 import EmailInput from './EmailInput';
 import PasswordInput from './PasswordInput';
 import { siteURL } from '../DevHub';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useChatContext } from '../ChatContext';
 import Logo from './Logo';
@@ -11,6 +11,7 @@ export default function AuthenticationTitle() {
 
   const [errors, setErrors] = useState([]);
   const [successMessage, setSuccessMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -41,7 +42,7 @@ export default function AuthenticationTitle() {
           setLogged(true);
 
           setTimeout(() => {
-            window.location.href = '/home';
+            navigate('/home');
           }, 1000);
         }
       })
