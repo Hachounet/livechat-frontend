@@ -11,9 +11,10 @@ export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
 
   const connectSocket = () => {
-    const newSocket = io('http://localhost:3000', {
+    const newSocket = io('https://livechat-backend-hachounet.adaptable.app', {
       autoConnect: true,
       reconnection: false,
+      withCredentials: true,
     });
 
     newSocket.on('connect_error', (err) => {
