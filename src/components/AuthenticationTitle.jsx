@@ -2,16 +2,24 @@ import EmailInput from './EmailInput';
 import PasswordInput from './PasswordInput';
 import { siteURL } from '../DevHub';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useChatContext } from '../ChatContext';
 import Logo from './Logo';
 
 export default function AuthenticationTitle() {
-  const { setLogged } = useChatContext();
+  const { setLogged, logged } = useChatContext();
 
   const [errors, setErrors] = useState([]);
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (logged) {
+      setTimeout(() => {
+        navigate('/home');
+      }, 1000);
+    }
+  }, [logged, navigate]); // Dépendance à l'état logged
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -40,10 +48,6 @@ export default function AuthenticationTitle() {
           setErrors([]);
           localStorage.setItem('accessToken', data.accessToken);
           setLogged(true);
-
-          setTimeout(() => {
-            navigate('/home');
-          }, 1000);
         }
       })
 
