@@ -14,7 +14,6 @@ export const SocketProvider = ({ children }) => {
     const newSocket = io('https://livechat-backend-hachounet.adaptable.app', {
       autoConnect: true,
       reconnection: false,
-      withCredentials: true,
     });
 
     newSocket.on('connect_error', (err) => {
