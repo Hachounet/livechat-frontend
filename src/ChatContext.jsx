@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const ChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {
-  const [actualPage, setActualPage] = useState(null);
+  const [actualPage, setActualPage] = useState([]);
 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
@@ -15,7 +15,6 @@ export const ChatProvider = ({ children }) => {
   const [actualContactPseudo, setActualContactPseudo] = useState('');
   const [groupsRefresh, setGroupsRefresh] = useState(false);
   const [friendsRefresh, setFriendsRefresh] = useState(false);
-  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     if (token) {
@@ -54,8 +53,6 @@ export const ChatProvider = ({ children }) => {
         setGroupsRefresh,
         friendsRefresh,
         setFriendsRefresh,
-        userId,
-        setUserId,
       }}
     >
       {' '}

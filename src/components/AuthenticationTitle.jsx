@@ -5,11 +5,10 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useChatContext } from '../ChatContext';
 import Logo from './Logo';
-import { useSocketContext } from '../SocketContext';
 
 export default function AuthenticationTitle() {
   const { setLogged } = useChatContext();
-  const { setUserIdSocket } = useSocketContext();
+
   const [errors, setErrors] = useState([]);
   const [successMessage, setSuccessMessage] = useState('');
 
@@ -41,7 +40,6 @@ export default function AuthenticationTitle() {
           localStorage.setItem('accessToken', data.accessToken);
           setLogged(true);
 
-          setUserIdSocket(data.userId);
           setTimeout(() => {
             window.location.href = '/home';
           }, 1000);
@@ -99,7 +97,6 @@ export default function AuthenticationTitle() {
           >
             sign up
           </Link>
-          <Link to="/home">HOME(WIP)</Link>
         </span>
       </div>
     </div>

@@ -1,15 +1,32 @@
 import Avatar from './Avatar';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSocketContext } from '../SocketContext';
 import { useChatContext } from '../ChatContext';
 import { updateUserStatusUrl } from '../DevHub';
 
-export default function UserStatus({ pseudo, avatarUrl }) {
-  const { userId, token, setLogged } = useChatContext();
+export default function UserStatus({ pseudo, avatarUrl, id }) {
+  const { token, setLogged } = useChatContext();
   const [displaySelect, setDisplaySelect] = useState(false);
+  const [currentPseudo, setCurrentPseudo] = useState(pseudo);
   const [selection, setSelection] = useState('online'); // Default to 'online'
   const { socket } = useSocketContext();
+
+  useEffect(() => {
+    if (socket) {
+      const handlePseudoChanged = (data) => {
+        if (data.userId === id) {
+          setCurrentPseudo(data.pseudo);
+        }
+      };
+
+      socket.on('pseudoChanged', handlePseudoChanged);
+
+      return () => {
+        socket.off('pseudoChanged', handlePseudoChanged);
+      };
+    }
+  }, [socket, id]);
 
   const handleStatusChange = async (newStatus) => {
     if (newStatus === 'online' || newStatus === 'offline') {
@@ -22,7 +39,7 @@ export default function UserStatus({ pseudo, avatarUrl }) {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ userId, status: newStatus }),
+        body: JSON.stringify({ status: newStatus }),
       });
 
       if (response.status === 401) {
@@ -59,14 +76,14 @@ export default function UserStatus({ pseudo, avatarUrl }) {
     <div className="flex flex-col">
       <button
         className="flex gap-2"
-        onClick={() => setDisplaySelect((prev) => !prev)} // Afficher/Masquer le select
+        onClick={() => setDisplaySelect((prev) => !prev)}
       >
         <Avatar
           avatarUrl={avatarUrl}
-          status={selection} // Indicateur visuel du statut
+          status={selection}
         />
         <div className="flex items-center">
-          <span className="text-xl md:text-2xl">{pseudo}</span>
+          <span className="text-xl md:text-2xl">{currentPseudo}</span>
         </div>
       </button>
       {displaySelect && selectContent}
@@ -77,4 +94,5 @@ export default function UserStatus({ pseudo, avatarUrl }) {
 UserStatus.propTypes = {
   pseudo: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string,
+  id: PropTypes.string,
 };

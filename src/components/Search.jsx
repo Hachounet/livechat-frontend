@@ -12,11 +12,15 @@ import { modifyUsersData } from '../helpers/modifyUsersData';
 import { modifyGroupsData } from '../helpers/modifyGroupsData';
 
 export default function Search() {
-  const { token, setLogged, setGroupsRefresh } = useChatContext();
+  const { token, setLogged, setGroupsRefresh, setActualContactPseudo } =
+    useChatContext();
   const [selection, setSelection] = useState('/users');
   const [query, setQuery] = useState('');
   const [data, setData] = useState(null);
-  const [requests, setRequests] = useState([]);
+
+  useEffect(() => {
+    setActualContactPseudo('Search');
+  }, [setActualContactPseudo]);
 
   const handleSelectChange = (event) => {
     setSelection(event.target.value);
@@ -141,8 +145,10 @@ export default function Search() {
       }
 
       if (friendsRequestsResponse.ok) {
+        // Parse the response and store it in newRequests
         newRequests = await friendsRequestsResponse.json();
-        setRequests(newRequests);
+      } else {
+        newRequests = { friendsRequests: [] }; // Fallback to an empty array if the request fails
       }
     }
 

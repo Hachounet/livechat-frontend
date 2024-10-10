@@ -3,10 +3,12 @@ import useAuth from '../hooks/authFetch';
 import { userInfosUrl, userPasswordUrl } from '../DevHub';
 import { useChatContext } from '../ChatContext';
 import { useState, useEffect } from 'react';
+import { useSocketContext } from '../SocketContext';
 
 export default function Settings() {
   const { data, loading, error } = useAuth(userInfosUrl);
-  const { token, setLogged } = useChatContext();
+  const { token, setLogged, setActualContactPseudo } = useChatContext();
+  const { socket } = useSocketContext();
   const [pseudoValue, setPseudoValue] = useState('');
   const [emailValue, setEmailValue] = useState('');
   const [avatarFile, setAvatarFile] = useState(null);
@@ -19,6 +21,10 @@ export default function Settings() {
       setAvatarUrl(data.user.avatarUrl);
     }
   }, [data]);
+
+  useEffect(() => {
+    setActualContactPseudo('Settings');
+  }, [setActualContactPseudo]);
 
   if (loading) return <div>Loading...</div>;
   if (error)
@@ -75,12 +81,16 @@ export default function Settings() {
       const data = await response.json();
       setSuccessMessage(data.message);
       setAvatarUrl(data.avatarUrl);
+      socket.emit('updateAvatar', { avatarUrl: data.avatarUrl });
     }
   };
 
   const handleLogOutUser = async (event) => {
     event.preventDefault();
     localStorage.removeItem('accessToken');
+    if (socket) {
+      socket.disconnect();
+    }
     setLogged(false);
     window.location.href = '/';
     return;
@@ -141,6 +151,7 @@ export default function Settings() {
     if (response.ok) {
       const data = await response.json();
       setSuccessMessage(data.message);
+      socket.emit('changePseudo', { pseudo });
     }
   };
 
@@ -203,7 +214,9 @@ export default function Settings() {
     } catch (error) {
       setErrorsMessage((prev) => [
         ...prev,
-        { msg: 'An error occurred while updating the password.' },
+        {
+          msg: `An error occurred while updating the password. ${error.message}`,
+        },
       ]);
     }
   };
@@ -238,7 +251,10 @@ export default function Settings() {
           <div className="flex flex-col items-center ">
             <span className="text-2xl text-pink-200">Avatar</span>
             <div className="flex flex-col items-center gap-4">
-              <Avatar avatarUrl={avatarUrl} />
+              <Avatar
+                avatarUrl={avatarUrl}
+                status={'offline'}
+              />
               <input
                 type="file"
                 className="file-input file-input-bordered file-input-xs w-full max-w-xs"

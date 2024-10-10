@@ -4,6 +4,7 @@ export default function Logo() {
       <img
         src="src/assets/logo.png"
         className="w-20 h-24 object-cover"
+        title="LiveChat Logo"
       ></img>
     </div>
   );

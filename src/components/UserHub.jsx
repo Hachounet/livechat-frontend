@@ -12,11 +12,11 @@ export default function UserHub() {
       </div>
     );
 
-  console.log(data);
   return (
     <UserStatus
       pseudo={data.user.pseudo}
       avatarUrl={data.user.avatarUrl}
+      id={data.user.id}
     />
   );
 }

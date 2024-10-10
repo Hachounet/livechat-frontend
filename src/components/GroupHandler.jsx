@@ -213,7 +213,7 @@ export default function GroupHandler() {
         />
         <h1 className="text-4xl text-pink-300">Groups</h1>
 
-        <div className="flex flex-col  min-w-[90%]">
+        <div className="flex flex-col  justify-center">
           <div className="flex flex-col items-center ">
             <span className="text-2xl text-pink-200">Your groups</span>
             <ul className="flex flex-col gap-1 items-center min-w-[90%]">
@@ -283,17 +283,19 @@ export default function GroupHandler() {
             </button>
           </div>
         </div>
-        <form className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center">
           <div className="flex flex-col items-center">
             <span className="text-2xl text-pink-200 ">Other groups</span>
-            <ul className="flex flex-col gap-1">
+            <ul className="flex flex-col gap-1 items-center min-w-[90%]">
               {groups.groupMemberships.map((group) =>
                 group.group.ownerId !== groups.userId ? (
                   <li
-                    className="list-none flex items-center flex-col gap-2 md:flex-row"
+                    className="flex gap-2 min-w-[100%] justify-between flex-col md:flex-row "
                     key={group.group.id}
                   >
-                    <span className="font-bold">{group.group.name}</span>
+                    <span className="font-bold flex items-center gap-1 justify-center">
+                      {group.group.name}
+                    </span>
                     <button
                       className="btn-error btn btn-outline btn-xs md:btn-md"
                       onClick={(e) =>
@@ -313,8 +315,8 @@ export default function GroupHandler() {
               )}
             </ul>
           </div>
-        </form>
-        <form className="flex flex-col justify-center">
+        </div>
+        <div className="flex flex-col justify-center">
           <div className="flex flex-col items-center">
             <span className="text-2xl text-pink-200 ">
               Invitations received
@@ -344,7 +346,7 @@ export default function GroupHandler() {
               )}
             </ul>
           </div>
-        </form>
+        </div>
       </div>
     </>
   );

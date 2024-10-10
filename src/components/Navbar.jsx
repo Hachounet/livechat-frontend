@@ -1,13 +1,12 @@
 import Divider from './Divider';
 import FriendsList from './FriendsList';
 import { useChatContext } from '../ChatContext';
-import Search from './Search';
+
 import Logo from './Logo';
-import Settings from './Settings';
-import FriendsRequest from './FriendsRequest';
+
 import { responsiveWidth } from '../DevHub';
 import GroupsList from './GroupsList';
-import GroupHandler from './GroupHandler';
+
 import UserHub from './UserHub';
 
 export default function NavBar() {
@@ -23,7 +22,7 @@ export default function NavBar() {
       <div className=" self-center flex gap-4">
         <button
           onClick={() => {
-            setActualPage(<Search />);
+            setActualPage(['search']);
             if (screenWidth <= responsiveWidth) {
               setNavBarVisible((prevState) => !prevState);
             }
@@ -45,7 +44,7 @@ export default function NavBar() {
         </button>
         <button
           onClick={() => {
-            setActualPage(<FriendsRequest />);
+            setActualPage(['friendsrequests']);
             if (screenWidth <= responsiveWidth) {
               setNavBarVisible((prevState) => !prevState);
             }
@@ -69,7 +68,7 @@ export default function NavBar() {
 
         <button
           onClick={() => {
-            setActualPage(<GroupHandler />);
+            setActualPage(['grouphandler']);
             if (screenWidth <= responsiveWidth) {
               setNavBarVisible((prevState) => !prevState);
             }
@@ -112,7 +111,7 @@ export default function NavBar() {
 
         <button
           onClick={() => {
-            setActualPage(<Settings />);
+            setActualPage(['settings']);
             if (screenWidth <= responsiveWidth) {
               setNavBarVisible((prevState) => !prevState);
             }

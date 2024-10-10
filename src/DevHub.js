@@ -23,6 +23,7 @@ const denyInvitationGroupUrl = 'http://localhost:3000/groups/deny';
 const excludeGroupMemberUrl = 'http://localhost:3000/groups/exclude';
 const postCancelInvitationsUrl = 'http://localhost:3000/groups/invitations';
 const updateUserStatusUrl = 'http://localhost:3000/users/status';
+const deleteFriendUrl = 'http://localhost:3000/friends/delete';
 
 export {
   responsiveWidth,
@@ -49,4 +50,5 @@ export {
   postCancelInvitationsUrl,
   excludeGroupMemberUrl,
   updateUserStatusUrl,
+  deleteFriendUrl,
 };

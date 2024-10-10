@@ -22,11 +22,13 @@ export default function PasswordInput({ name }) {
         />
       </svg>
       <input
+        id={name}
         name={name}
         type="password"
         className="grow"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
       />
     </label>
   );

@@ -55,9 +55,8 @@ export default function Modal({
 
     if (modalContent === 'inviteContent') {
       getFriends();
-      console.log(friends);
     }
-  }, [modalContent]);
+  }, [modalContent, groupId, setLogged, token]);
 
   const createGroupContent = (
     <>
@@ -244,7 +243,6 @@ export default function Modal({
     if (response.ok) {
       const data = await response.json();
       setSuccessMessage(data.message);
-      console.log('I am before break for FRIENDS', friends);
       setFriends((prevState) => ({
         ...prevState,
         friends: prevState.friends.map((friend) =>
@@ -340,7 +338,6 @@ export default function Modal({
     e.preventDefault();
     setErrorsMessages([]);
     setSuccessMessage('');
-    console.log('iamgroupid', groupId);
 
     const response = await fetch(
       `${postCancelInvitationsUrl}/${groupId}/${friendId}`,
@@ -466,9 +463,8 @@ export default function Modal({
 
     setErrorsMessages([]);
 
-    if (groupName === '' || groupName.trim().length <= 3) {
-      const errGroupName =
-        'Group name cannot be empty or less than 3 characters.';
+    if (groupName.trim().length < 3 || groupName.trim().length > 20) {
+      const errGroupName = 'Group name must be between 3 and 20 characters.';
       setErrorsMessages((prev) => [...prev, errGroupName]);
       return;
     }
@@ -566,4 +562,7 @@ Modal.propTypes = {
   modalVisibility: PropTypes.string.isRequired,
   setModalVisibility: PropTypes.func.isRequired,
   groupId: PropTypes.string,
+  modalContent: PropTypes.string,
+  groupData: PropTypes.object,
+  setGroupData: PropTypes.func,
 };

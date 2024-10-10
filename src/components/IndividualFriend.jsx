@@ -1,5 +1,5 @@
 import Avatar from './Avatar';
-import PrivateChat from './PrivateChat';
+
 import { useChatContext } from '../ChatContext';
 import { responsiveWidth } from '../DevHub';
 import PropTypes from 'prop-types';
@@ -8,6 +8,8 @@ export default function IndividualFriend({
   avatarUrl,
   contactId,
   status,
+  isBold,
+  onClickSwitchSelectedFriend,
 }) {
   const { setActualPage, screenWidth, setNavBarVisible } = useChatContext();
 
@@ -16,7 +18,8 @@ export default function IndividualFriend({
       <button
         className="flex gap-2"
         onClick={() => {
-          setActualPage(<PrivateChat contactId={contactId} />);
+          setActualPage(['privatechat', contactId]);
+          onClickSwitchSelectedFriend();
           if (screenWidth <= responsiveWidth) {
             setNavBarVisible((prevState) => !prevState);
           }
@@ -27,7 +30,11 @@ export default function IndividualFriend({
           status={status}
         />
         <div className="flex items-center">
-          <span className=" text-xl md:text-2xl">{pseudo}</span>
+          <span
+            className={`text-xl md:text-2xl ${isBold ? 'font-bold text-pink-300' : ''}`}
+          >
+            {pseudo}
+          </span>
         </div>
       </button>
     </>
@@ -39,4 +46,6 @@ IndividualFriend.propTypes = {
   avatarUrl: PropTypes.string,
   contactId: PropTypes.string.isRequired,
   status: PropTypes.string,
+  isBold: PropTypes.bool,
+  onClickSwitchSelectedFriend: PropTypes.func,
 };

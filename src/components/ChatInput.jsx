@@ -3,12 +3,14 @@ import FileInput from './FileInput';
 import { useChatContext } from '../ChatContext';
 import { getPrivateMessagesURL } from '../DevHub';
 import { useSocketContext } from '../SocketContext';
+import PropTypes from 'prop-types';
 
 export default function ChatInput({
   value,
   onChange,
   onSubmit,
   receiverId,
+  receiverPseudo = 'User',
   setMessages,
   groupOrPm,
 }) {
@@ -81,7 +83,7 @@ export default function ChatInput({
         value={value}
         onChange={onChange}
         type="text"
-        placeholder="Type here"
+        placeholder={`To @${receiverPseudo}...`}
         className="input input-bordered input-primary w-full max-w-xs self-center min-w-[33%] pt-4 pb-4"
         disabled={isFileSelected}
       />
@@ -105,3 +107,13 @@ export default function ChatInput({
     </form>
   );
 }
+
+ChatInput.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func,
+  receiverId: PropTypes.string,
+  receiverPseudo: PropTypes.string,
+  setMessages: PropTypes.func,
+  groupOrPm: PropTypes.string,
+};
