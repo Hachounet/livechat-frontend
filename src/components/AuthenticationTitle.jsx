@@ -47,6 +47,7 @@ export default function AuthenticationTitle() {
           setSuccessMessage(data.message);
           setErrors([]);
           localStorage.setItem('accessToken', data.accessToken);
+          console.log(localStorage.getItem('accessToken'));
           setLogged(true);
         }
       })
