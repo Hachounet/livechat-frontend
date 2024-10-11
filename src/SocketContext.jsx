@@ -13,7 +13,7 @@ export const SocketProvider = ({ children }) => {
   const connectSocket = () => {
     const newSocket = io('https://livechat-backend-hachounet.adaptable.app', {
       autoConnect: true,
-      reconnection: false,
+      reconnection: true,
     });
 
     newSocket.on('connect_error', (err) => {
