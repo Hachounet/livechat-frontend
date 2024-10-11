@@ -13,14 +13,6 @@ export default function AuthenticationTitle() {
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (logged) {
-      setTimeout(() => {
-        navigate('/home');
-      }, 1000);
-    }
-  }, [logged, navigate]); // Dépendance à l'état logged
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
