@@ -7,7 +7,7 @@ import { useChatContext } from '../ChatContext';
 import Logo from './Logo';
 
 export default function AuthenticationTitle() {
-  const { setLogged, logged } = useChatContext();
+  const { setLogged, logged, setToken } = useChatContext();
 
   const [errors, setErrors] = useState([]);
   const [successMessage, setSuccessMessage] = useState('');
@@ -39,11 +39,12 @@ export default function AuthenticationTitle() {
           setSuccessMessage(data.message);
           setErrors([]);
           localStorage.setItem('accessToken', data.accessToken);
-          console.log(localStorage.getItem('accessToken'));
+
+          setToken(localStorage.getItem('accessToken'));
           setLogged(true);
           setTimeout(() => {
             navigate('/home');
-          });
+          }, 1000);
         }
       })
 

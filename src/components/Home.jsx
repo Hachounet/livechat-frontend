@@ -17,7 +17,7 @@ export default function Home() {
   // Socket connexion when first mount of component. <Home> is protected so it cannot be mounted if user is not logged in.
   useEffect(() => {
     connectSocket();
-  }, []);
+  }, [connectSocket]);
 
   useEffect(() => {
     if (socket) {
