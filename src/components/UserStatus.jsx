@@ -50,7 +50,9 @@ export default function UserStatus({ pseudo, avatarUrl, id }) {
       }
 
       if (response.ok) {
+        console.log('response was OK');
         if (socket) {
+          console.log('Emitting inside response.ok, socket');
           socket.emit('statusChanged', { token: token, status: newStatus });
         }
         return;

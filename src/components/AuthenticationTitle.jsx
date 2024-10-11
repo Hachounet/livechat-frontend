@@ -2,12 +2,12 @@ import EmailInput from './EmailInput';
 import PasswordInput from './PasswordInput';
 import { siteURL } from '../DevHub';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useChatContext } from '../ChatContext';
 import Logo from './Logo';
 
 export default function AuthenticationTitle() {
-  const { setLogged, logged, setToken } = useChatContext();
+  const { setLogged, setToken } = useChatContext();
 
   const [errors, setErrors] = useState([]);
   const [successMessage, setSuccessMessage] = useState('');
