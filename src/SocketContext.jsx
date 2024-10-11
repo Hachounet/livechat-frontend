@@ -11,7 +11,7 @@ export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
 
   const connectSocket = () => {
-    const newSocket = io('https://livechat-backend-hachounet.adaptable.app', {
+    const newSocket = io('https://livechat-backend-v57c.onrender.com', {
       autoConnect: true,
       reconnection: true,
     });
