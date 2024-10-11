@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import NavBar from './Navbar';
-import SwitchNavBar from './SwitchNavBar'; // Assurez-vous que ce composant est importé
+import SwitchNavBar from './SwitchNavBar';
 import { useChatContext } from '../ChatContext';
 import { useSocketContext } from '../SocketContext';
 import Search from './Search';

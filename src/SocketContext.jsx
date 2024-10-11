@@ -17,7 +17,6 @@ export const SocketProvider = ({ children }) => {
     });
 
     newSocket.on('connect_error', (err) => {
-      // eslint-disable-next-line no-console
       console.error('Socket connection error:', err.message);
     });
 
