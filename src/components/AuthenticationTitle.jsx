@@ -42,7 +42,7 @@ export default function AuthenticationTitle() {
           console.log(localStorage.getItem('accessToken'));
           setLogged(true);
           setTimeout(() => {
-            window.location.href = '/';
+            navigate('/home');
           });
         }
       })
